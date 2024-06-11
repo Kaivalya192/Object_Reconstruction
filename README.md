@@ -4,15 +4,15 @@
 
 ### Download Pretrained Weights for Segmentation Network
 
-.[Download link for XMem-s012.pth](https://drive.google.com/file/d/1LJ6U3NmI9MoUKG27mzqlgP1ioHWq-a5e/view?usp=sharing)
+[XMem-s012.pth](https://drive.google.com/file/d/1LJ6U3NmI9MoUKG27mzqlgP1ioHWq-a5e/view?usp=sharing)
 
-place them under `./BundleSDF/BundleTrack/XMem/saves/XMem-s012.pth`
+place them under `./BundleSDF/BundleTrack/XMem/saves/`
 
 ### Download Pretrained Weights for LoFTR
 
-[Download link for outdoor_ds.ckpt](https://drive.google.com/drive/folders/11b1-Wzxcn7LpmTgHPqlC3H1ZzGsB6j6R?usp=sharing)
+[outdoor_ds.ckpt](https://drive.google.com/drive/folders/11b1-Wzxcn7LpmTgHPqlC3H1ZzGsB6j6R?usp=sharing)
 
-place them under `./BundleSDF/BundleTrack/LoFTR/weights/outdoor_ds.ckpt`.
+place them under `./BundleSDF/BundleTrack/LoFTR/weights/`
 
 
 ## 2) Docker Setup
