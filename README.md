@@ -26,6 +26,8 @@ docker build --network host -t nvcr.io/nvidian/bundlesdf .
 ### Capture Data from RealSense Depth Camera
 
 To capture data from a RealSense depth camera, run the `rec_con_mask.py` script.
+<br>
+<br>Note : (Don't run in Docker Container)<br/>
 
 ```bash
 python rec_con_mask.py
