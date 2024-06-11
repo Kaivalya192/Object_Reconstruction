@@ -82,9 +82,7 @@ RUN conda init bash &&\
     pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --extra-index-url https://download.pytorch.org/whl/cu113 &&\
     pip install "git+https://github.com/facebookresearch/pytorch3d.git@stable" &&\
     pip install PyOpenGL-accelerate trimesh opencv-python wandb matplotlib imageio tqdm open3d ruamel.yaml sacred kornia pymongo pyrender jupyterlab ninja &&\
-    conda install -y -c anaconda scipy &&\
-    conda install gcc=12.1.0 -y
-
+    conda install -y -c anaconda scipy gcc=12.1.0
 
 
 RUN cd / && git clone --recursive https://github.com/NVIDIAGameWorks/kaolin
