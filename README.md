@@ -26,12 +26,19 @@ docker build --network host -t nvcr.io/nvidian/bundlesdf .
 ### Capture Data from RealSense Depth Camera
 
 To capture data from a RealSense depth camera, run the `rec_con_mask.py` script.
-<br>
-<br>Note : (Don't run in Docker Container)<br/>
+
+<br>1)Install [librealsense SDK](https://github.com/IntelRealSense/librealsense) 
+<br>2)Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+#### Prepare Input Directory
 
 ```bash
 python rec_con_mask.py
 ```
+<br>Note : (Don't run in Docker Container)<br/>
 
 Press `Enter` to start recording RGB and depth frames. Then, create a boundary by selecting points on the window to create a mask for the first image.
 
