@@ -47,17 +47,17 @@ Press `Enter` to start recording RGB and depth frames. Then, create a boundary b
 1. Run the container:
 
     ```bash
-    bash 1)run_container.sh
+    bash run_container.sh
     ```
 
 2. Build the project:
 
     ```bash
-    bash 2)build.sh
+    bash build.sh
     ```
 
 3. Run the project:
 
     ```bash
-    bash 3)run.sh
+    bash run.sh
     ```
