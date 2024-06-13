@@ -88,7 +88,7 @@ share_coarse_fine: 1
 mode: sdf
 fs_sdf: 0.001   # Uncertain free space
 crop: 0
-mesh_resolution: 0.005
+mesh_resolution: 0.002
 max_trans: 0.02         # meters
 max_rot: 20         # deg
 
