@@ -36,7 +36,7 @@ pip install -r requirements.txt
 #### Prepare Input Directory
 
 ```bash
-python rec_con_mask.py
+bash capture.sh
 ```
 <br>Note : (Don't run in Docker Container)<br/>
 
