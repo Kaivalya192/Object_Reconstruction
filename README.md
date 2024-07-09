@@ -28,7 +28,11 @@ docker build --network host -t nvcr.io/nvidian/bundlesdf .
 To capture data from a RealSense depth camera, run the `rec_con_mask.py` script.
 
 <br>1)Install [librealsense SDK](https://github.com/IntelRealSense/librealsense) 
-<br>2)Install dependencies
+<br>2)Install dependencies for Xmem and Realsense
+<br> conda environment (optional) 
+```bash
+conda create -n obj_recon python=3.10
+```
 ```bash
 pip install -r requirements.txt
 ```
