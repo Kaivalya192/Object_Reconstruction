@@ -40,7 +40,7 @@ pip install -r requirements.txt
 #### Prepare Input Directory
 
 ```bash
-bash capture.sh
+sudo bash capture.sh
 ```
 <br>Note : (Don't run in Docker Container)<br/>
 
