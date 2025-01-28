@@ -78,7 +78,13 @@ ENV PATH $PATH:/opt/conda/envs/py38/bin
 RUN conda init bash &&\
     echo "conda activate py38" >> ~/.bashrc &&\
     conda activate py38 &&\
-    pip install setuptools==69.5.1 &&\ 
+    conda install -c conda-forge gxx_linux-64 &&\
+    cd /opt/conda/envs/py38/bin &&\
+    ln -s /opt/conda/envs/py38/bin/x86_64-conda_cos6-linux-gnu-g++ g++ &&\
+    conda install --channel=conda-forge libxcrypt
+    
+
+RUN pip install setuptools==69.5.1 &&\ 
     pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --extra-index-url https://download.pytorch.org/whl/cu113 &&\
     pip install "git+https://github.com/facebookresearch/pytorch3d.git@stable" &&\
     pip install PyOpenGL-accelerate trimesh opencv-python wandb matplotlib imageio tqdm open3d ruamel.yaml sacred kornia pymongo pyrender jupyterlab ninja &&\
@@ -88,6 +94,7 @@ RUN conda init bash &&\
 RUN cd / && git clone --recursive https://github.com/NVIDIAGameWorks/kaolin
 
 
+ENV CPATH /opt/conda/envs/py38/include
 ENV CUDA_HOME /usr/local/cuda
 ENV LD_LIBRARY_PATH /usr/local/cuda/lib64
 ENV OPENCV_IO_ENABLE_OPENEXR=1
@@ -96,6 +103,7 @@ ENV OPENCV_IO_ENABLE_OPENEXR=1
 RUN imageio_download_bin freeimage
 
 RUN conda activate py38 && cd /kaolin &&\
+    export NVCC_APPEND_FLAGS='-allow-unsupported-compiler' &&\
     # sed -i "223i\    extra_compile_args['nvcc'] += ['-gencode=arch=compute_52,code=sm_52', '-gencode=arch=compute_60,code=sm_60', '-gencode=arch=compute_61,code=sm_61', '-gencode=arch=compute_70,code=sm_70', '-gencode=arch=compute_75,code=sm_75', '-gencode=arch=compute_80,code=sm_80', '-gencode=arch=compute_80,code=compute_80']" setup.py &&\
     FORCE_CUDA=1 python setup.py develop
 
