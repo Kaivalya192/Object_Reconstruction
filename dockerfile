@@ -88,7 +88,7 @@ RUN pip install setuptools==69.5.1 &&\
     pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --extra-index-url https://download.pytorch.org/whl/cu113 &&\
     pip install "git+https://github.com/facebookresearch/pytorch3d.git@stable" &&\
     pip install PyOpenGL-accelerate trimesh opencv-python wandb matplotlib imageio tqdm open3d ruamel.yaml sacred kornia pymongo pyrender jupyterlab ninja &&\
-    conda install -y -c anaconda scipy gcc=12.1.0
+    conda install -y -c anaconda scipy
 
 
 RUN cd / && git clone --recursive https://github.com/NVIDIAGameWorks/kaolin
@@ -102,13 +102,15 @@ ENV OPENCV_IO_ENABLE_OPENEXR=1
 
 RUN imageio_download_bin freeimage
 
-RUN conda activate py38 && cd /kaolin &&\
-    export NVCC_APPEND_FLAGS='-allow-unsupported-compiler' &&\
-    # sed -i "223i\    extra_compile_args['nvcc'] += ['-gencode=arch=compute_52,code=sm_52', '-gencode=arch=compute_60,code=sm_60', '-gencode=arch=compute_61,code=sm_61', '-gencode=arch=compute_70,code=sm_70', '-gencode=arch=compute_75,code=sm_75', '-gencode=arch=compute_80,code=sm_80', '-gencode=arch=compute_80,code=compute_80']" setup.py &&\
-    FORCE_CUDA=1 python setup.py develop
+RUN conda install -y -c anaconda gcc=10.3.0 && conda activate py38
+    # export NVCC_APPEND_FLAGS='-allow-unsupported-compiler' &&\
+    # # sed -i "223i\    extra_compile_args['nvcc'] += ['-gencode=arch=compute_52,code=sm_52', '-gencode=arch=compute_60,code=sm_60', '-gencode=arch=compute_61,code=sm_61', '-gencode=arch=compute_70,code=sm_70', '-gencode=arch=compute_75,code=sm_75', '-gencode=arch=compute_80,code=sm_80', '-gencode=arch=compute_80,code=compute_80']" setup.py &&\
+    # FORCE_CUDA=1 python setup.py develop
 
 #### Kaolin will change numpy version
-RUN pip install transformations einops scikit-image awscli-plugin-endpoint gputil xatlas pymeshlab rtree dearpygui pytinyrenderer PyQt5 cython-npm chardet openpyxl
+RUN pip install kaolin==0.14.0 -f https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-1.11.0_cu113.html && \
+    pip install transformations einops scikit-image awscli-plugin-endpoint gputil xatlas pymeshlab rtree dearpygui pytinyrenderer PyQt5 cython-npm chardet openpyxl
+    
 
 RUN apt-get update --fix-missing && \
     apt install -y rsync lbzip2 pigz zip p7zip-full p7zip-rar
