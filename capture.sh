@@ -1,6 +1,6 @@
 python3 rec_con_mask.py
 cd XMem
-python3 eval.py
+/home/iitgn-robotics/miniconda3/envs/obj_recon/bin/python eval.py
 cd ../input
 mv video1 masks
 rm -rf JPEGImages

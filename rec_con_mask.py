@@ -29,9 +29,9 @@ align_to = rs.stream.color
 align = rs.align(align_to)
 
 with open(os.path.join(base_dir, 'cam_K.txt'), 'w') as f:
-    f.write("615.3791504           0 314.7796326\n")
-    f.write("          0 615.3792114 236.6492004\n")
-    f.write("          0           0           1\n")
+    f.write("388.5970 0 325.1479\n")
+    f.write("0 388.5970 240.6325\n")
+    f.write("0 0 1\n")
 
 print("Press Enter to start recording the sequence.")
 while True:
