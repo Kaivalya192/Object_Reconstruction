@@ -61,14 +61,12 @@ RUN cd / && git clone https://github.com/jbeder/yaml-cpp &&\
 
 SHELL ["/bin/bash", "--login", "-c"]
 
-RUN cd / && wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /miniconda.sh && \
+RUN cd / && wget --quiet https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh -O /miniconda.sh && \
     /bin/bash /miniconda.sh -b -p /opt/conda &&\
     ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh &&\
     echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc &&\
     /bin/bash -c "source ~/.bashrc" && \
-    /opt/conda/bin/conda update -n base -c defaults conda -y &&\
     /opt/conda/bin/conda config --set ssl_verify no && \
-    /opt/conda/bin/conda config --add channels conda-forge &&\
     /opt/conda/bin/conda create -n py38 python=3.8
 
 
@@ -81,8 +79,8 @@ RUN conda init bash &&\
     pip install setuptools==69.5.1 &&\ 
     pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --extra-index-url https://download.pytorch.org/whl/cu113 &&\
     pip install "git+https://github.com/facebookresearch/pytorch3d.git@stable" &&\
-    pip install PyOpenGL-accelerate trimesh opencv-python wandb matplotlib imageio tqdm open3d ruamel.yaml sacred kornia pymongo pyrender jupyterlab ninja &&\
-    conda install -y -c anaconda scipy gcc=12.1.0
+    pip install PyOpenGL-accelerate trimesh opencv-python wandb matplotlib imageio tqdm open3d ruamel.yaml sacred kornia pymongo pyrender jupyterlab ninja cython warp-lang &&\
+    conda install -y -c conda-forge scipy gcc=12.1.0
 
 
 RUN cd / && git clone --recursive https://github.com/NVIDIAGameWorks/kaolin
@@ -95,12 +93,15 @@ ENV OPENCV_IO_ENABLE_OPENEXR=1
 
 RUN imageio_download_bin freeimage
 
+ENV CXX=/usr/bin/g++
+ENV CC=/usr/bin/gcc
+
 RUN conda activate py38 && cd /kaolin &&\
     # sed -i "223i\    extra_compile_args['nvcc'] += ['-gencode=arch=compute_52,code=sm_52', '-gencode=arch=compute_60,code=sm_60', '-gencode=arch=compute_61,code=sm_61', '-gencode=arch=compute_70,code=sm_70', '-gencode=arch=compute_75,code=sm_75', '-gencode=arch=compute_80,code=sm_80', '-gencode=arch=compute_80,code=compute_80']" setup.py &&\
     FORCE_CUDA=1 python setup.py develop
 
 #### Kaolin will change numpy version
-RUN pip install transformations einops scikit-image awscli-plugin-endpoint gputil xatlas pymeshlab rtree dearpygui pytinyrenderer PyQt5 cython-npm chardet openpyxl
+RUN pip install transformations einops scikit-image awscli-plugin-endpoint gputil xatlas pymeshlab rtree dearpygui==1.6.2 pytinyrenderer PyQt5 cython-npm chardet openpyxl yacs
 
 RUN apt-get update --fix-missing && \
     apt install -y rsync lbzip2 pigz zip p7zip-full p7zip-rar

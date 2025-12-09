@@ -1,3 +1,3 @@
 cd BundleSDF
-export LD_LIBRARY_PATH=/opt/conda/envs/py38/lib/
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/conda/envs/py38/lib/
 python run_custom.py
