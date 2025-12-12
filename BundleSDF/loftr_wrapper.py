@@ -40,7 +40,7 @@ class LoftrRunner:
     last_data = {'image0': image0, 'image1': image1}
     logging.info(f"image0: {last_data['image0'].shape}")
 
-    batch_size = 64
+    batch_size = 16
     ret_keys = ['mkpts0_f','mkpts1_f','mconf','m_bids']
     with torch.cuda.amp.autocast(enabled=True):
       i_b = 0
