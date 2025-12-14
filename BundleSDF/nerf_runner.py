@@ -1401,7 +1401,7 @@ class NerfRunner:
     vertices[:, :3] = voxel_size_ndc.reshape(1,3) * vertices[:, :3] + offset.reshape(1,3)
 
     # Create mesh
-    mesh = trimesh.Trimesh(vertices, triangles, process=False)
+    mesh = trimesh.Trimesh(vertices, triangles, process=False, validate=True)
 
     if return_sigma:
       return mesh,sigma,query_pts
@@ -1482,7 +1482,7 @@ class NerfRunner:
     tex_image = torch.zeros((tex_res,tex_res,3)).cuda().float()
     weight_tex_image = torch.zeros(tex_image.shape[:-1]).cuda().float()
     mesh.merge_vertices()
-    mesh.remove_duplicate_faces()
+    # mesh.remove_duplicate_faces()
     mesh = mesh.unwrap()
     H,W = tex_image.shape[:2]
     uvs_tex = (mesh.visual.uv*np.array([W-1,H-1]).reshape(1,2))    #(n_V,2)
