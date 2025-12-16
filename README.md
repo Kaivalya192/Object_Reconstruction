@@ -6,7 +6,7 @@
 
 [XMem-s012.pth](https://drive.google.com/file/d/1LJ6U3NmI9MoUKG27mzqlgP1ioHWq-a5e/view?usp=sharing)
 
-place them under `./BundleSDF/BundleTrack/XMem/saves/`
+place them under `./XMem/saves/`
 
 ### Download Pretrained Weights for LoFTR
 
@@ -38,6 +38,12 @@ pip install -r requirements.txt
 ```
 
 #### Prepare Input Directory
+
+Run
+```bash
+conda info --base
+```
+to get conda base directory. Copy the path and paste it in `capture.sh`. Then, run the following. 
 
 ```bash
 sudo bash capture.sh

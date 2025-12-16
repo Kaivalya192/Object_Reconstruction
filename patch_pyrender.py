@@ -24,8 +24,8 @@ def patch_egl():
         print("Warning: Could not find __init__ block in egl.py")
 
     # Patch 2: Import EGLError
-    if "EGLConfig" in content and "EGLError" not in content:
-        content = content.replace("EGLConfig", "EGLConfig, EGLError")
+    if "eglCreateContext, EGLConfig" in content and "EGLError" not in content:
+        content = content.replace("eglCreateContext, EGLConfig", "EGLConfig, EGLError")
 
     # Patch 3: init_context logic
     old_block = """        # Cache DISPLAY if necessary and get an off-screen EGL display
