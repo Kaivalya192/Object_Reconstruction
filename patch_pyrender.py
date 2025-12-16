@@ -25,7 +25,7 @@ def patch_egl():
 
     # Patch 2: Import EGLError
     if "eglCreateContext, EGLConfig" in content and "EGLError" not in content:
-        content = content.replace("eglCreateContext, EGLConfig", "EGLConfig, EGLError")
+        content = content.replace("eglCreateContext, EGLConfig", "eglCreateContext, EGLConfig, EGLError")
 
     # Patch 3: init_context logic
     old_block = """        # Cache DISPLAY if necessary and get an off-screen EGL display
