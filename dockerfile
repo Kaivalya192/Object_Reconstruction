@@ -106,7 +106,7 @@ RUN pip install transformations einops scikit-image awscli-plugin-endpoint gputi
 RUN apt-get update --fix-missing && \
     apt install -y rsync lbzip2 pigz zip p7zip-full p7zip-rar
 
-RUN conda activate py38 && pip install PyOpenGL==3.1.10 PyOpenGL_accelerate==3.1.10 pyrender==0.1.45
+RUN conda activate py38 && pip install pyrender==0.1.45 && pip install PyOpenGL==3.1.10 PyOpenGL_accelerate==3.1.10
 
 COPY patch_pyrender.py /patch_pyrender.py
 RUN conda activate py38 && python /patch_pyrender.py
