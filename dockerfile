@@ -108,5 +108,6 @@ RUN apt-get update --fix-missing && \
 
 RUN conda activate py38 && pip install pyrender==0.1.45 && pip install PyOpenGL==3.1.10 PyOpenGL_accelerate==3.1.10
 
+COPY pyrender_patch/egl.py /opt/conda/envs/py38/lib/python3.8/site-packages/pyrender/platforms/egl.py
 COPY patch_pyrender.py /patch_pyrender.py
 RUN conda activate py38 && python /patch_pyrender.py
